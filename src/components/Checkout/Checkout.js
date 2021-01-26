@@ -1,4 +1,5 @@
 import '../../public/css/Checkout.css';
+import Subtotal from '../Subtotal/Subtotal';
 
 function Checkout() {
     return (
@@ -15,7 +16,7 @@ function Checkout() {
             </div>
 
             <div className="checkout__right">
-                <h2>Subtotal</h2>
+                <Subtotal />
             </div>
         </div>
     )
