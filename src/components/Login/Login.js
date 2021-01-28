@@ -1,7 +1,20 @@
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../../public/css/Login.css';
 
 function Login() {
+
+    const [state, setState] = useState({
+        email: '',
+        password: ''
+	});
+
+
+    const handleFields = ({ target }) => {
+        setState({ ...state, [target.name]: target.value });
+        // console.log(target.name, target.value);
+	};
+
     return (
         <div className="login">
             <Link to="/">
@@ -12,11 +25,11 @@ function Login() {
                 <form>
                     <div>
                         <label>E-mail</label>
-                        <input type="email" />
+                        <input type="email" name="email" onChange={handleFields} />
                     </div>
                     <div>
                         <label>Password</label>
-                        <input type="password" />
+                        <input type="password" name="email" onChange={handleFields} />
                     </div>
                     <button className="login__signInButton">Sign In</button>
                     <br />
