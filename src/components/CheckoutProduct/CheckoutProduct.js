@@ -5,6 +5,14 @@ import { useStateValue } from "../ContextConfig/StateProvider";
 function CheckoutProduct() {
 
     const [{ basket }, dispatch] = useStateValue();
+
+    const removeFromBasket = (productId) => {
+        // console.log(productId);
+        dispatch({
+            type: "REMOVE_FROM_BASKET",
+            id: productId,
+        })
+    }
     
     return (
         <div>
@@ -20,7 +28,9 @@ function CheckoutProduct() {
                             <div className="checkoutProduct__rating">
                                 {Array(product.rating).fill().map((i) => (<span key={Math.random()}><Star /></span>))}
                             </div>
-                            <button>Remove From Basket</button>
+                            <button onClick={()=>{ removeFromBasket(product.id) }}>
+                                Remove From Basket
+                            </button>
                         </div>
                     </div>
                 )  
