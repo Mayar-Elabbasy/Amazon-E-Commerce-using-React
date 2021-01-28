@@ -1,13 +1,22 @@
 import '../../public/css/Header.css';
 import  { Search, ShoppingBasket } from '@material-ui/icons';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useStateValue } from '../ContextConfig/StateProvider';
+import { auth } from '../../firebase';
 
 
 function Header() {
     const [ state ] = useStateValue();
+    const history = useHistory();
 
     // console.log(state.basket);
+    const handleAuthentication = () => {
+        if(state.user) {
+            auth.signOut();
+        } else {
+            history.push("/login")
+        }
+    }
 
     return (
         <div className="header">
@@ -26,8 +35,8 @@ function Header() {
                         <span className="header__optionLineOne">
                             Hello Guest
                         </span>
-                        <span className="header__optionLineTwo">
-                            Sign In
+                        <span onClick={handleAuthentication} className="header__optionLineTwo">
+                            {state.user ? 'Sign out' : 'Sign In' }
                         </span>
                     </div>
                 </Link>

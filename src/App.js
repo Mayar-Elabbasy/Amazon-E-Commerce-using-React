@@ -5,8 +5,32 @@ import Checkout from './components/Checkout/Checkout';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
+import { useEffect } from 'react';
+import { auth } from './firebase';
+import { useStateValue } from './components/ContextConfig/StateProvider';
 
 function App() {
+
+  const [ state, dispatch ] = useStateValue();
+
+  useEffect(() => {
+    auth.onAuthStateChanged(authUser => {
+      // console.log("user", authUser);
+
+      if(authUser){
+        dispatch({
+          type: "SET_USER",
+          user: authUser
+        })
+      } else {
+        dispatch({
+          type: "SET_USER",
+          user: null
+        })
+      }
+    })
+  }, [])
+
   return (
     <Router>
       <div className="app">
