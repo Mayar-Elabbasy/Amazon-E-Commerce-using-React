@@ -1,10 +1,10 @@
-import '../../public/css/Login.css';
+import '../../public/css/Register.css';
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { auth } from '../../firebase';
 
-function Login() {
+function Register() {
 
     const history = useHistory();
     const { register, handleSubmit, errors } = useForm();
@@ -19,9 +19,9 @@ function Login() {
         // console.log(target.name, target.value);
     };
     
-    const signIn = (e) => {
+    const registerNewUser = (e) => {
         // console.log("data: ",e);
-        auth.signInWithEmailAndPassword(state.email, state.password)
+        auth.createUserWithEmailAndPassword(state.email, state.password)
         .then((response) => {
             // console.log(response);
             if(response) {
@@ -33,13 +33,13 @@ function Login() {
     };
 
     return (
-        <div className="login">
+        <div className="register">
             <Link to="/">
-                <img className="login__logo img-fluid" alt="Logo" src="https://logos-world.net/wp-content/uploads/2020/04/Amazon-Logo.png" />
+                <img className="register__logo img-fluid" alt="Logo" src="https://logos-world.net/wp-content/uploads/2020/04/Amazon-Logo.png" />
             </Link>
-            <div className="login__container">
-                <h1>Sign-In</h1>
-                <form onSubmit={handleSubmit(signIn)}>
+            <div className="register__container">
+                <h1>Create account</h1>
+                <form onSubmit={handleSubmit(registerNewUser)}>
                     <div>
                         <label>E-mail</label>
                         <input type="email" name="email" onChange={handleFields}
@@ -63,23 +63,20 @@ function Login() {
 								'Password must be 6 characters at least' }
 						</span>
                     </div>
-                    <button type="submit" className="login__signInButton">Sign In</button>
+                    <button type="submit" className="register__signInButton">Create Your Amazon Account</button>
                     <br />
                     <br />
-                    <p>
-                        By continuing, you agree to Amazon's Conditions of Use and Privacy Notice.
-                    </p>
+                    <p>By creating an account, you agree to Amazon's Conditions of Use and Privacy Notice.</p>
+                    <br />
+
+                    <span>Already have an account? </span>   
+                    <Link to="/login">
+                        <span>Sign-In</span>
+                    </Link>
                 </form>
             </div>
-
-            <br />
-            <div>New to Amazon?</div>
-            
-            <Link to="/register">
-                <button className="login__signUpButton">Create Your Amazon Account</button>
-            </Link>
         </div>
     )
 }
 
-export default Login;
+export default Register;

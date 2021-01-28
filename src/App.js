@@ -4,12 +4,16 @@ import Home from './components/Home/Home';
 import Checkout from './components/Checkout/Checkout';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from './components/Login/Login';
+import Register from './components/Register/Register';
 
 function App() {
   return (
     <Router>
       <div className="app">
           <Switch>
+            <Route path="/register">
+              <Register />
+            </Route>
             <Route path="/login">
               <Login />
             </Route>
