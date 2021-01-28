@@ -1,10 +1,12 @@
 import '../../public/css/Login.css';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { auth } from '../../firebase';
 
 function Login() {
 
+    const history = useHistory();
     const { register, handleSubmit, errors } = useForm();
 
     const [state, setState] = useState({
@@ -18,9 +20,18 @@ function Login() {
     };
     
     const signIn = (e) => {
-        console.log("data: ",e);
-    }
-console.log(state);
+        // console.log("data: ",e);
+        auth.signInWithEmailAndPassword(state.email, state.password)
+        .then((response) => {
+            // console.log(response);
+            if(response) {
+                history.push("/");
+            }
+        }).catch((error) => {
+            console.log(error);
+        })
+    };
+
     return (
         <div className="login">
             <Link to="/">
@@ -52,7 +63,7 @@ console.log(state);
 								'Password must be 6 characters at least' }
 						</span>
                     </div>
-                    <button className="login__signInButton">Sign In</button>
+                    <button type="submit" className="login__signInButton">Sign In</button>
                     <br />
                     <br />
                     <p>By continuing, you agree to Amazon's Conditions of Use and Privacy Notice.</p>
