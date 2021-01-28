@@ -1,4 +1,5 @@
 import '../../public/css/Checkout.css';
+import CheckoutProduct from '../CheckoutProduct/CheckoutProduct';
 import Subtotal from '../Subtotal/Subtotal';
 
 function Checkout() {
@@ -11,7 +12,8 @@ function Checkout() {
                     <h2 className="checkout__title">
                         Your Shopping Basket
                     </h2>
-                    {/* BasketItem */}
+
+                    <CheckoutProduct />
                 </div>
             </div>
 
