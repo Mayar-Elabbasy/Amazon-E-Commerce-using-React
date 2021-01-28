@@ -26,7 +26,8 @@ function CheckoutProduct() {
                             <p className="checkoutProduct__title">{product.title}</p>
                             <p> <small>$</small> <strong>{product.price}</strong> </p>
                             <div className="checkoutProduct__rating">
-                                {Array(product.rating).fill().map((i) => (<span key={Math.random()}><Star /></span>))}
+                                {Array(product.rating).fill().map((i) => 
+                                    (<span key={Math.random()}><Star /></span>))}
                             </div>
                             <button onClick={()=>{ removeFromBasket(product.id) }}>
                                 Remove From Basket

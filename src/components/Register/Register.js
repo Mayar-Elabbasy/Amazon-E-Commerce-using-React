@@ -63,10 +63,15 @@ function Register() {
 								'Password must be 6 characters at least' }
 						</span>
                     </div>
-                    <button type="submit" className="register__signInButton">Create Your Amazon Account</button>
+                    <button type="submit" className="register__signInButton">
+                        Create Your Amazon Account
+                    </button>
                     <br />
                     <br />
-                    <p>By creating an account, you agree to Amazon's Conditions of Use and Privacy Notice.</p>
+                    <p>
+                        By creating an account, you agree to Amazon's Conditions of 
+                        Use and Privacy Notice.
+                    </p>
                     <br />
 
                     <span>Already have an account? </span>   

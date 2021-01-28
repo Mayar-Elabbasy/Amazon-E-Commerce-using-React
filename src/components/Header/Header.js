@@ -33,7 +33,7 @@ function Header() {
                 <Link to="/login">
                     <div className="header__option">
                         <span className="header__optionLineOne">
-                            Hello Guest
+                            Hello {state.user ? state.user.email : 'Guest' }
                         </span>
                         <span onClick={handleAuthentication} className="header__optionLineTwo">
                             {state.user ? 'Sign out' : 'Sign In' }
