@@ -1,21 +1,32 @@
 import '../../public/css/CheckoutProduct.css';
 import { Star } from "@material-ui/icons";
 import { useStateValue } from "../ContextConfig/StateProvider";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function CheckoutProduct() {
 
     const [{ basket }, dispatch] = useStateValue();
 
-    const removeFromBasket = (productId) => {
+    const removeFromBasket = (productId, productTitle) => {
         // console.log(productId);
         dispatch({
             type: "REMOVE_FROM_BASKET",
             id: productId,
         })
+        toast.error(`This Product: ${productTitle} has just been removed from the basket`, {
+            position: "bottom-left",
+            autoClose: 4000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true
+        });  
     }
     
     return (
         <div>
+            <ToastContainer />
             {basket.map((product) => {
                 return (
                     <div key={product.id} className="checkoutProduct">
@@ -29,7 +40,7 @@ function CheckoutProduct() {
                                 {Array(product.rating).fill().map((i) => 
                                     (<span key={Math.random()}><Star /></span>))}
                             </div>
-                            <button onClick={()=>{ removeFromBasket(product.id) }}>
+                            <button onClick={()=>{ removeFromBasket(product.id, product.title) }}>
                                 Remove From Basket
                             </button>
                         </div>

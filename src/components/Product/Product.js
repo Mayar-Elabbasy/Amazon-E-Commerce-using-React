@@ -1,6 +1,8 @@
 import '../../public/css/Product.css';
 import  { Star } from '@material-ui/icons';
 import { useStateValue } from '../ContextConfig/StateProvider';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Product({ id, title, image, price, rating }) {
     const [ state, dispatch ] = useStateValue();
@@ -18,10 +20,19 @@ function Product({ id, title, image, price, rating }) {
                 rating: rating
             }
         })
+        toast.success(`This Product: ${title} has just been added to the basket`, {
+            position: "bottom-left",
+            autoClose: 4000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true
+        }); 
     }
 
     return (
         <div className="product">
+            <ToastContainer />
             <div className="product__info" key={id}>
                 <p>{title}</p>
                 <p className="product__price">
