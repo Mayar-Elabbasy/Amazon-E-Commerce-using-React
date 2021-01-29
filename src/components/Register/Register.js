@@ -1,5 +1,5 @@
 import '../../public/css/Register.css';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { auth } from '../../firebase';
@@ -7,11 +7,14 @@ import { auth } from '../../firebase';
 function Register() {
 
     const history = useHistory();
-    const { register, handleSubmit, errors } = useForm();
+    const { register, handleSubmit, errors, watch } = useForm();
+    const password = useRef({});
+    password.current = watch("password", "");
 
     const [state, setState] = useState({
         email: '',
-        password: ''
+        password: '',
+        reEnterPassword: ''
 	});
 
     const handleFields = ({ target }) => {
@@ -61,6 +64,21 @@ function Register() {
 								'This field is required, you have to fill it!' }
 							{errors.password && errors.password.type === 'minLength' &&
 								'Password must be 6 characters at least' }
+						</span>
+                    </div>
+                    <div>
+                        <label>Re-enter password</label>
+                        <input type="password" name="reEnterPassword" onChange={handleFields}
+                               ref={register({ required: true, minLength: 6, 
+                                               validate: value => value === password.current})} />
+                        <span className="form__errors">
+                            {errors.reEnterPassword && errors.reEnterPassword.type === 'required' &&
+                                'This field is required, you have to fill it!'}
+                            {errors.reEnterPassword && errors.reEnterPassword.type === 'minLength' &&
+                                'Re-enter Password must be 6 characters at least'}
+                            {errors.reEnterPassword &&
+                                errors.reEnterPassword.type === 'validate' &&
+                                'Passwords must match'}
 						</span>
                     </div>
                     <button type="submit" className="register__signInButton">
