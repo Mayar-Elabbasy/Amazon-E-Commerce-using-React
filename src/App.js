@@ -2,11 +2,12 @@ import './App.css';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import Checkout from './components/Checkout/Checkout';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
+import Payment from './components/Payment/Payment';
 import { useEffect } from 'react';
 import { auth } from './firebase';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useStateValue } from './components/ContextConfig/StateProvider';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -55,6 +56,10 @@ function App() {
             <Route path="/checkout">
               <Header />
               <Checkout />
+            </Route>
+            <Route path="/payment">
+              <Header />
+              <Payment />
             </Route>
             <Route path="/">
               <Header />

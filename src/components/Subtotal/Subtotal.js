@@ -3,10 +3,12 @@ import CurrencyFormat from 'react-currency-format';
 import React from 'react';
 import { useStateValue } from '../ContextConfig/StateProvider';
 import { getBasketTotal } from '../ContextConfig/Reducer';
+import { useHistory } from 'react-router-dom';
 
 function Subtotal() {
 
     const [{ basket }, dispatch] = useStateValue();
+    const history = useHistory();
 
     return (
         <div className="subtotal">
@@ -26,7 +28,7 @@ function Subtotal() {
                 prefix={'$'} 
             />
 
-            <button>Proceed to Checkout</button>
+            <button onClick={ () => history.push("/payment") }>Proceed to Checkout</button>
         </div>
     )
 }
