@@ -8,6 +8,8 @@ import Register from './components/Register/Register';
 import { useEffect } from 'react';
 import { auth } from './firebase';
 import { useStateValue } from './components/ContextConfig/StateProvider';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
@@ -22,6 +24,14 @@ function App() {
           type: "SET_USER",
           user: authUser
         })
+        toast.success("User Successfully Login", {
+          position: "top-center",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true
+        });
       } else {
         dispatch({
           type: "SET_USER",
@@ -34,6 +44,7 @@ function App() {
   return (
     <Router>
       <div className="app">
+        <ToastContainer />
           <Switch>
             <Route path="/register">
               <Register />
