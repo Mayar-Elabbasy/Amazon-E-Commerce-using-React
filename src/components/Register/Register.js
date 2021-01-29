@@ -3,6 +3,8 @@ import React, { useState, useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { auth } from '../../firebase';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Register() {
 
@@ -31,12 +33,21 @@ function Register() {
                 history.push("/");
             }
         }).catch((error) => {
-            console.log(error);
+            // console.log(error);
+            toast.error(error.message, {
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true
+            }); 
         })
     };
 
     return (
         <div className="register">
+            <ToastContainer />
             <Link to="/">
                 <img className="register__logo img-fluid" alt="Logo" src="https://logos-world.net/wp-content/uploads/2020/04/Amazon-Logo.png" />
             </Link>
