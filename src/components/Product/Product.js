@@ -21,7 +21,7 @@ function Product({ id, title, image, price, rating }) {
             }
         })
         toast.success(`This Product: ${title} has just been added to the basket`, {
-            position: "bottom-left",
+            position: "top-right",
             autoClose: 4000,
             hideProgressBar: false,
             closeOnClick: true,
