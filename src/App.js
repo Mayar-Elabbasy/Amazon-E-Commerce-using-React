@@ -11,6 +11,10 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useStateValue } from './components/ContextConfig/StateProvider';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+
+const promise = loadStripe('pk_test_51IFOIjEE9KsFcKpo6avN7rYiMAmiNaoXqRA2s5KRrBAZimUgs7IGOvZUPUYZAZQ47OAFoItUTd9fDmsfQutE80tS00SkPWDdXy');
 
 function App() {
 
@@ -59,7 +63,9 @@ function App() {
             </Route>
             <Route path="/payment">
               <Header />
-              <Payment />
+              <Elements stripe={promise}>
+                <Payment />
+              </Elements>
             </Route>
             <Route path="/">
               <Header />
