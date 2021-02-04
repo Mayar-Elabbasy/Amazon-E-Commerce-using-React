@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { auth } from '../../firebase';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import amazonLogo from '../../public/images/amazonLogo.jpg';
 
 function Register() {
 
@@ -49,7 +50,7 @@ function Register() {
         <div className="register">
             <ToastContainer />
             <Link to="/">
-                <img className="register__logo img-fluid" alt="Logo" src="https://logos-world.net/wp-content/uploads/2020/04/Amazon-Logo.png" />
+                <img className="register__logo img-fluid" alt="Logo" src={amazonLogo} />
             </Link>
             <div className="register__container">
                 <h1>Create account</h1>
