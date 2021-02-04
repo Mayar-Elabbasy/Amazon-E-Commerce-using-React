@@ -15,7 +15,7 @@ function CheckoutProduct() {
             id: productId,
         })
         toast.error(`This Product: ${productTitle} has just been removed from the basket`, {
-            position: "top-right",
+            position: "bottom-right",
             autoClose: 4000,
             hideProgressBar: false,
             closeOnClick: true,
