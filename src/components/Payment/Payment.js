@@ -28,7 +28,8 @@ function Payment() {
         const getClientSecret = async() => {
             const response = await axios({
                 method: 'post',
-                url: `/payments/create?total=${getBasketTotal(basket) * 100 }`
+                url: `/payments/create?total=${getBasketTotal(basket) * 100 }`,
+                headers: {'Access-Control-Allow-Origin': '*'}
             })
             setState({ ...state, clientSecret: response.data.clientSecret })
         }
@@ -65,8 +66,13 @@ function Payment() {
                 succeeded: true,
                 error: '',
                 processing: false,
-            });	
+            }); 
+            
             history.replace('/orders')
+
+            dispatch({
+                type: 'EMPTY_BASKET',   
+            })
         }).catch((error) => {
             // console.log(error);
         })
