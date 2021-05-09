@@ -20,9 +20,22 @@ const reducer = (state, action) =>  {
     // console.log(action);
     switch (action.type) {
         case "ADD_TO_BASKET":
-            return {
-                ...state,
-                basket: [...state.basket, action.item]
+            const existedBasketItem = state.basket.find((basketItem) => 
+                                                        basketItem.id === action.item.id);
+            
+            if(existedBasketItem) {
+                existedBasketItem.quantity = (existedBasketItem.quantity + 1);
+                return {
+                    ...state,
+                    basket: [...state.basket, existedBasketItem]
+                }
+
+            } else {
+                action.item.quantity = 1;
+                return {
+                    ...state,
+                    basket: [...state.basket, action.item]
+                }
             }
 
         case 'EMPTY_BASKET':
@@ -33,17 +46,15 @@ const reducer = (state, action) =>  {
 
         case "REMOVE_FROM_BASKET":
             let newBasket = [...state.basket];
-            const index = state.basket.findIndex((basketItem) => basketItem.id === action.id);
-
-                if (index >= 0) {
-                    newBasket.splice(index, 1);
-                } else {
-                    // console.log("Product not found"); 
-                }
+            newBasket.filter(function(item) {
+                return item.id != action.id;
+            });
 
             return {
                 ...state,
-                basket: newBasket
+                basket: (newBasket.filter(function(item) {
+                    return item.id != action.id;
+                }))
             }
 
         case "SET_USER":

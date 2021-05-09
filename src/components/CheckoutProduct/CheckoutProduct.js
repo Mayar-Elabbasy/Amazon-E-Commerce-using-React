@@ -8,6 +8,8 @@ function CheckoutProduct() {
 
     const [{ basket }, dispatch] = useStateValue();
 
+    const uniqueBasketItems = [...new Set(basket)];
+
     const removeFromBasket = (productId, productTitle) => {
         // console.log(productId);
         dispatch({
@@ -23,11 +25,20 @@ function CheckoutProduct() {
             draggable: true
         });  
     }
-    
+
+    const addToBasket = (productId) => {
+        dispatch({
+            type: "ADD_TO_BASKET",
+            item: {
+                id: productId,
+            }
+        })
+    }
+
     return (
         <div>
             <ToastContainer />
-            {basket.map((product) => {
+            {uniqueBasketItems.map((product) => {
                 return (
                     <div key={product.id} className="checkoutProduct">
                         
@@ -35,7 +46,11 @@ function CheckoutProduct() {
                         
                         <div className="checkoutProduct__info">
                             <p className="checkoutProduct__title">{product.title}</p>
-                            <p> <small>$</small> <strong>{product.price}</strong> </p>
+                            <p><small>$</small> <strong>{product.price}</strong> </p>
+                            <p> 
+                                <span>Quantity: {product.quantity}</span>
+                                <button onClick={() => addToBasket(product.id)}>+</button>
+                            </p>
                             <div className="checkoutProduct__rating">
                                 {Array(product.rating).fill().map((i) => 
                                     (<span key={Math.random()}><Star /></span>))}

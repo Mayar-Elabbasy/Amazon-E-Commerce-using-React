@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import React from 'react';
 
-function Product({ id, title, image, price, rating, hiddenButton }) {
+function Product({ id, title, image, price, rating, quantity, hiddenButton }) {
     const [ state, dispatch ] = useStateValue();
 
     // console.log(state.basket);
@@ -18,7 +18,8 @@ function Product({ id, title, image, price, rating, hiddenButton }) {
                 title: title,
                 image: image,
                 price: price,
-                rating: rating
+                rating: rating,
+                quantity: quantity
             }
         })
         toast.success(`This Product: ${title} has just been added to the basket`, {
