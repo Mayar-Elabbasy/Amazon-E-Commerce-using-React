@@ -35,6 +35,15 @@ function CheckoutProduct() {
         })
     }
 
+    const decrementQuantity = (productId) => {      
+        dispatch({
+            type: "DECREMENT_QUANTITY",
+            item: {
+                id: productId,
+            }
+        })
+    }
+
     return (
         <div>
             <ToastContainer />
@@ -48,6 +57,7 @@ function CheckoutProduct() {
                             <p className="checkoutProduct__title">{product.title}</p>
                             <p><small>$</small> <strong>{product.price}</strong> </p>
                             <p> 
+                                <button onClick={() => decrementQuantity(product.id)}>-</button>
                                 <span>Quantity: {product.quantity}</span>
                                 <button onClick={() => addToBasket(product.id)}>+</button>
                             </p>

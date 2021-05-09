@@ -38,7 +38,30 @@ const reducer = (state, action) =>  {
                 }
             }
 
-        case 'EMPTY_BASKET':
+        case "DECREMENT_QUANTITY":
+            let newBasket24 = [...state.basket];
+            
+            const existedBasketItem2 = state.basket.find((basketItem) => 
+                                                        basketItem.id === action.item.id);
+            
+            if(existedBasketItem2 && existedBasketItem2.quantity > 1) {
+                existedBasketItem2.quantity = (existedBasketItem2.quantity - 1);
+                return {
+                    ...state,
+                    basket: [...state.basket, existedBasketItem2]
+                }
+
+            } else {
+                existedBasketItem2.quantity = 0;
+                return {
+                    ...state,
+                    basket: (newBasket24.filter(function(item) {
+                        return item.id != action.item.id;
+                    }))
+                }
+            }
+
+        case "EMPTY_BASKET":
             return {
                 ...state,
                 basket: []
@@ -46,10 +69,6 @@ const reducer = (state, action) =>  {
 
         case "REMOVE_FROM_BASKET":
             let newBasket = [...state.basket];
-            newBasket.filter(function(item) {
-                return item.id != action.id;
-            });
-
             return {
                 ...state,
                 basket: (newBasket.filter(function(item) {
