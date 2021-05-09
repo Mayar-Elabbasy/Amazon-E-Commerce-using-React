@@ -3,6 +3,7 @@ import  { Search, ShoppingBasket } from '@material-ui/icons';
 import { Link, useHistory } from 'react-router-dom';
 import { useStateValue } from '../ContextConfig/StateProvider';
 import { auth } from '../../firebase';
+import { getBasketCount } from '../ContextConfig/Reducer';
 
 
 function Header() {
@@ -78,7 +79,7 @@ function Header() {
                     <div className="header__optionBasket">
                         <ShoppingBasket />
                         <span className="header__optionLineTwo header__optionBasketCount">
-                            {state.basket?.length}
+                            {getBasketCount(state.basket)}
                         </span>
                     </div>
                 </Link>

@@ -4,15 +4,25 @@ export const initialState = {
 }
 
 export const getBasketTotal = (basket) => {
-    // console.log("basket",basket);
+    const uniqueBasketItems = new Set(basket);
     let basketSubtotal = 0;
-    if (basket.length > 0) {
-        basket.map((product) => basketSubtotal += product.price)
-        // console.log("basketSubtotal", basketSubtotal);
-        return basketSubtotal
+    if (uniqueBasketItems.size > 0) {
+        uniqueBasketItems.forEach((product) => basketSubtotal += (product.price * product.quantity))
+        return basketSubtotal;
     } else {
-        // console.log("basketSubtotal", basketSubtotal);
        return basketSubtotal;
+    }
+}
+
+export const getBasketCount = (basket) => {
+
+    const uniqueBasketItems2 = new Set(basket);
+    let basketCount = 0;
+    if (uniqueBasketItems2.size > 0) {
+        uniqueBasketItems2.forEach((product) => basketCount += product.quantity);
+        return basketCount;
+    } else {
+       return basketCount;
     }
 }
 
@@ -39,7 +49,7 @@ const reducer = (state, action) =>  {
             }
 
         case "DECREMENT_QUANTITY":
-            let newBasket24 = [...state.basket];
+            let newBasket2 = [...state.basket];
             
             const existedBasketItem2 = state.basket.find((basketItem) => 
                                                         basketItem.id === action.item.id);
@@ -55,7 +65,7 @@ const reducer = (state, action) =>  {
                 existedBasketItem2.quantity = 0;
                 return {
                     ...state,
-                    basket: (newBasket24.filter(function(item) {
+                    basket: (newBasket2.filter(function(item) {
                         return item.id != action.item.id;
                     }))
                 }
