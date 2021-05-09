@@ -1,5 +1,7 @@
 import '../../public/css/CheckoutProduct.css';
-import { Star } from "@material-ui/icons";
+import { Star, RemoveShoppingCart } from "@material-ui/icons";
+import { FaCartArrowDown, FaCartPlus } from 'react-icons/fa';
+import Tooltip from '@material-ui/core/Tooltip';
 import { useStateValue } from "../ContextConfig/StateProvider";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -57,17 +59,28 @@ function CheckoutProduct() {
                             <p className="checkoutProduct__title">{product.title}</p>
                             <p><small>$</small> <strong>{product.price}</strong> </p>
                             <p> 
-                                <button onClick={() => decrementQuantity(product.id)}>-</button>
+                                <Tooltip title={<FaCartArrowDown size={27} />}>
+                                    <button onClick={() => decrementQuantity(product.id)}>
+                                        -
+                                    </button>
+                                </Tooltip>
                                 <span>Quantity: {product.quantity}</span>
-                                <button onClick={() => addToBasket(product.id)}>+</button>
+                        
+                                <Tooltip title={<FaCartPlus size={27} />}>
+                                    <button onClick={() => addToBasket(product.id)}>
+                                        +
+                                    </button>
+                                </Tooltip>
                             </p>
                             <div className="checkoutProduct__rating">
                                 {Array(product.rating).fill().map((i) => 
                                     (<span key={Math.random()}><Star /></span>))}
                             </div>
-                            <button onClick={()=>{ removeFromBasket(product.id, product.title) }}>
-                                Remove From Basket
-                            </button>
+                            <Tooltip title={<RemoveShoppingCart />}>
+                                <button onClick={()=>{ removeFromBasket(product.id, product.title) }}>
+                                    Remove From Basket
+                                </button>
+                            </Tooltip> 
                         </div>
                     </div>
                 )  
