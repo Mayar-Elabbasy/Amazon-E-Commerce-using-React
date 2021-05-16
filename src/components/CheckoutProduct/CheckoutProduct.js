@@ -5,6 +5,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import { useStateValue } from "../ContextConfig/StateProvider";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ReactImageMagnify from 'react-image-magnify';
 
 function CheckoutProduct() {
 
@@ -55,6 +56,27 @@ function CheckoutProduct() {
                         
                         <img className="checkoutProduct__image" src={product.image} alt="" />
                         
+                        <ReactImageMagnify 
+                            {...{
+                                smallImage: {
+                                    alt: `${product.title}`,
+                                    isFluidWidth: true,
+                                    src: `${product.image}`,
+                                    sizes: '(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px'
+                                },
+                                largeImage: {
+                                    src: `${product.image}`,
+                                    width: 1200,
+                                    height: 1800
+                                },
+                                enlargedImageContainerDimensions: {
+                                    width: '200%',
+                                    height: '100%'
+                                },
+                                shouldUsePositiveSpaceLens: true
+                            }} 
+                        />
+ 
                         <div className="checkoutProduct__info">
                             <p className="checkoutProduct__title">{product.title}</p>
                             <p><small>$</small> <strong>{product.price}</strong> </p>
