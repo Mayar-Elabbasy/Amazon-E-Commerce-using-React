@@ -79,8 +79,10 @@ function CheckoutProduct() {
  
                         <div className="checkoutProduct__info">
                             <p className="checkoutProduct__title">{product.title}</p>
-                            <p><small>$</small> <strong>{product.price}</strong> </p>
-                            <div className="mt-4"> 
+                            <p className="checkoutProduct__price">
+                                <small>$ </small> <strong>{product.price}</strong> 
+                            </p>
+                            <div className="checkoutProduct__quantity"> 
                                 <Tooltip title={<FaCartArrowDown size={27} />}>
                                     <button onClick={() => decrementQuantity(product.id)}
                                             className="checkoutProduct__increment-decrement-quantity-buttons">
@@ -101,7 +103,8 @@ function CheckoutProduct() {
                                     (<span key={Math.random()}><Star /></span>))}
                             </div>
                             <Tooltip title={<RemoveShoppingCart />}>
-                                <button onClick={()=>{ removeFromBasket(product.id, product.title) }}>
+                                <button 
+                                    onClick={()=>{ removeFromBasket(product.id, product.title) }}>
                                     Remove From Basket
                                 </button>
                             </Tooltip> 

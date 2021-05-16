@@ -44,3 +44,42 @@
     margin: 3px;
     border-radius: 2px;
 }
+
+@media all and (max-width: 425px) {  
+    .checkoutProduct {
+        display : block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .checkoutProduct__title {
+        margin: 8px 0px;
+    }
+
+    .checkoutProduct__image {
+        margin-bottom: 0px;
+    }
+
+    .checkoutProduct__price {
+        display: flex;
+        justify-content: center;
+        margin-top: 5px;
+    }
+    
+    .checkoutProduct__quantity {
+        display: flex;
+        justify-content: center;
+        margin-top: 5px;
+    }
+
+    .checkoutProduct__rating {
+        display: flex;
+        justify-content: center;
+    }
+
+    .checkoutProduct__info > button {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
