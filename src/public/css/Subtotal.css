@@ -30,3 +30,8 @@
     color: #111;  
 }
 
+@media all and (max-width: 425px) {  
+    .subtotal {
+        width: auto;
+    }
+}
