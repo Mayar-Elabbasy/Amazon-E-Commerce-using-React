@@ -8,7 +8,6 @@ import { useHistory } from 'react-router-dom';
 function Subtotal() {
 
     const [{ basket, user }, dispatch] = useStateValue();
-    const uniqueBasketItems = [...new Set(basket)];
     const history = useHistory();
 
     return (

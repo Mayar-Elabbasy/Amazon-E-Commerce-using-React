@@ -3,7 +3,8 @@ import  { Star } from '@material-ui/icons';
 import { useStateValue } from '../ContextConfig/StateProvider';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import React from 'react';
+import { FaCartPlus } from 'react-icons/fa';
+import Tooltip from '@material-ui/core/Tooltip';
 
 function Product({ id, title, image, price, rating, quantity, hiddenButton }) {
     const [ state, dispatch ] = useStateValue();
@@ -48,9 +49,11 @@ function Product({ id, title, image, price, rating, quantity, hiddenButton }) {
 
             <img src={image} alt="" />
             {!hiddenButton ?
-                <button onClick={addToBasket}>Add To Basket</button> 
+                <Tooltip title={<FaCartPlus size={27} />}>
+                    <button onClick={addToBasket}>Add To Basket</button>
+                </Tooltip>
             :
-                <React.Fragment></React.Fragment>
+                null
             }      
         </div>
     )
