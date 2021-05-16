@@ -5,7 +5,7 @@ import { useStateValue } from '../ContextConfig/StateProvider';
 import { Link, useHistory } from "react-router-dom";
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import CurrencyFormat from 'react-currency-format';
-import { getBasketTotal } from '../ContextConfig/Reducer';
+import { getBasketTotal, getBasketCount } from '../ContextConfig/Reducer';
 import axios from '../../axios';
 import { db } from '../../firebase';
 
@@ -93,7 +93,7 @@ function Payment() {
     return (
         <div className="payment">
             <div className="payment__container">
-                <h1> Checkout {<Link to="/checkout">({basket?.length} items)</Link>}</h1>
+                <h1> Checkout {<Link to="/checkout">({getBasketCount(basket)} items)</Link>}</h1>
                 <div className="payment__section">
                     <div className="payment__title">
                         <h3>Delivery Address</h3>
@@ -124,9 +124,7 @@ function Payment() {
                             <div className='payment__priceContainer'>
                                 <CurrencyFormat 
                                     renderText={(value) => (
-                                            <React.Fragment>
-                                                <p> Order Total: <strong> {value}</strong> </p>
-                                            </React.Fragment>
+                                            <p> Order Total: <strong> {value}</strong> </p>
                                         )
                                     }
                                     value={getBasketTotal(basket)}
