@@ -80,20 +80,22 @@ function CheckoutProduct() {
                         <div className="checkoutProduct__info">
                             <p className="checkoutProduct__title">{product.title}</p>
                             <p><small>$</small> <strong>{product.price}</strong> </p>
-                            <p> 
+                            <div className="mt-4"> 
                                 <Tooltip title={<FaCartArrowDown size={27} />}>
-                                    <button onClick={() => decrementQuantity(product.id)}>
+                                    <button onClick={() => decrementQuantity(product.id)}
+                                            className="checkoutProduct__increment-decrement-quantity-buttons">
                                         -
                                     </button>
                                 </Tooltip>
                                 <span>Quantity: {product.quantity}</span>
                         
                                 <Tooltip title={<FaCartPlus size={27} />}>
-                                    <button onClick={() => addToBasket(product.id)}>
+                                    <button onClick={() => addToBasket(product.id)}
+                                            className="checkoutProduct__increment-decrement-quantity-buttons">
                                         +
                                     </button>
                                 </Tooltip>
-                            </p>
+                            </div>
                             <div className="checkoutProduct__rating">
                                 {Array(product.rating).fill().map((i) => 
                                     (<span key={Math.random()}><Star /></span>))}
