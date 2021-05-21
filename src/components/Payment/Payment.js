@@ -12,6 +12,7 @@ import { db } from '../../firebase';
 function Payment() {
 
     const [{ basket, user }, dispatch] = useStateValue();
+    const uniqueBasketItems = [...new Set(basket)];
     const stripe = useStripe();
     const elements = useElements();
     const history = useHistory();
@@ -68,7 +69,7 @@ function Payment() {
             .collection('orders')
             .doc(paymentIntent.id)
             .set({
-                basket: basket,
+                basket: uniqueBasketItems,
                 amount: paymentIntent.amount,
                 created: paymentIntent.created
             })

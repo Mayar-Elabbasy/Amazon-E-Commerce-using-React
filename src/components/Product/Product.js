@@ -42,6 +42,7 @@ function Product({ id, title, image, price, rating, quantity, hiddenButton }) {
                     <small>$</small>
                     <strong> {price}</strong>
                 </p>
+                {(quantity === 0) ? null :<span>Quantity: {quantity}</span>}
                 <div className="product__rating">
                     {Array(rating).fill().map((i) => (<span key={Math.random()}><Star /></span>))}
                 </div>

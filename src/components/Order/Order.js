@@ -22,6 +22,7 @@ function Order({ order }) {
                             title={item.title}
                             image={item.image}
                             price={item.price}
+                            quantity={item.quantity}
                             rating={item.rating}
                             hiddenButton={true}
                         />
