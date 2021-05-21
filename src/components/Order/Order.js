@@ -1,4 +1,3 @@
-import React from 'react';
 import moment from 'moment';
 import Product from '../Product/Product';
 import '../../public/css/Order.css';
@@ -16,7 +15,7 @@ function Order({ order }) {
 
             {order.data.basket?.map(item =>{
                 return (
-                    <div className="home__row">
+                    <div className="home__row" key={item.id}>
                         <Product 
                             id={item.id}
                             title={item.title}
@@ -33,9 +32,7 @@ function Order({ order }) {
 
             <CurrencyFormat 
                 renderText={(value) => (
-                        <React.Fragment>
-                            <p> Order Total: <strong> {value} </strong> </p>
-                        </React.Fragment>
+                        <p> Order Total: <strong> {value} </strong> </p>
                     )
                 }
                 value={(order.data.amount / 100)}
