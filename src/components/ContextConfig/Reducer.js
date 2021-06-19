@@ -66,7 +66,7 @@ const reducer = (state, action) =>  {
                 return {
                     ...state,
                     basket: (newBasket2.filter(function(item) {
-                        return item.id != action.item.id;
+                        return item.id !== action.item.id;
                     }))
                 }
             }
@@ -82,7 +82,7 @@ const reducer = (state, action) =>  {
             return {
                 ...state,
                 basket: (newBasket.filter(function(item) {
-                    return item.id != action.id;
+                    return item.id !== action.id;
                 }))
             }
 
