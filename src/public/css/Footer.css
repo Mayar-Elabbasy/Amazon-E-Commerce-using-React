@@ -16,3 +16,35 @@
     margin-right: 5px;
     margin-left: 5px;
 }
+
+@media (max-width: 320px) {  
+    .footer {
+        height: 65px !important;
+    }
+
+    .footer__info {
+        padding: 18px !important;
+        font-size: 14px !important;
+    }
+
+    .footer__important-links {
+        display: flex !important;
+        padding: 14px !important;
+    }
+}
+
+@media all and (max-width: 425px) {  
+    .footer {
+        height: 65px;
+    }
+
+    .footer__info {
+        padding: 25px;
+        font-size: 15px;
+    }
+
+    .footer__important-links {
+        display: flex;
+        padding: 23px;
+    }
+}
