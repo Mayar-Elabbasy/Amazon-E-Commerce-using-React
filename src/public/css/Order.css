@@ -22,5 +22,6 @@
 @media all and (max-width: 425px) {  
     .order__id {
         position: initial;
+        margin-bottom: 25px;
     }
 }
