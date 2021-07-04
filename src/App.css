@@ -1,3 +1,7 @@
+.app {
+    background-color: white;
+}
+
 .form__errors {
     margin: 10px;
     margin-top: 20px;
