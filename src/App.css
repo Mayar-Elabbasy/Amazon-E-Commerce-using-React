@@ -1,5 +1,7 @@
 .app {
     background-color: white;
+    min-height: 100vh;
+    padding-bottom: 40px;
 }
 
 .form__errors {

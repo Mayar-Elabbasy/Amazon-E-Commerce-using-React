@@ -6,9 +6,11 @@
     background-color: #131921;
     font-weight: bold;
     color: white;
-    position: sticky;
-    top: 0;
     z-index: 100;   
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
 
 .footer__heart {
