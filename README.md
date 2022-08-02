@@ -29,6 +29,37 @@
 <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="100" height="100"/> </a> [![N|Stripe](https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Stripe_Logo%2C_revised_2016.svg/200px-Stripe_Logo%2C_revised_2016.svg.png)](https://stripe.com/en-gb-us)  <a href="https://firebase.google.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" alt="firebase" width="100" height="100"/> </a>
 
 
+## Installation
+
+1. Download the code as ZIP OR Clone the project
+    ```sh
+    git clone https://github.com/Mayar-Elabbasy/Amazon-E-Commerce-using-React.git
+    ```
+2. cd into the project. 
+    ```sh
+    cd Amazon-E-Commerce-using-React/
+    ```
+3.  Run this following command to add all the dependencies included in the ```package.json``` file --> It is a file that holds the metadata relevant to the project, and it is used for managing the project's dependencies, scripts, version and a lot more.
+    ```sh
+    npm install
+    ```
+    OR
+    ```sh
+    yarn install
+    ```
+4. You are ready to go doing the final step to run
+    ```sh
+    npm start
+    ```
+    OR
+    ```sh
+    yarn start
+    ```
+    Congratulations, by running the last command the app will open in the development mode.\
+    Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+    
+
+
 ###### In order to have the full cycle working including payment feature, kindly follow the instructions mentioned at the README.md file in this Repo  [Amazon-E-Commerce-Cloud-Functions-for-Firebase](https://github.com/Mayar-Elabbasy/Amazon-E-Commerce-Cloud-Functions-for-Firebase)
 
 ###### Happy shopping ^_^
@@ -38,6 +69,8 @@
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+
 
 
 ## Getting Started with Create React App
