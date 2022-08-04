@@ -20,13 +20,13 @@ const promise = loadStripe('pk_test_51IFOIjEE9KsFcKpo6avN7rYiMAmiNaoXqRA2s5KRrBA
 
 function App() {
 
-  const [ state, dispatch ] = useStateValue();
+  const [, dispatch] = useStateValue();
 
   useEffect(() => {
     auth.onAuthStateChanged(authUser => {
       // console.log("user", authUser);
 
-      if(authUser){
+      if (authUser) {
         dispatch({
           type: "SET_USER",
           user: authUser
@@ -46,39 +46,39 @@ function App() {
         })
       }
     })
-  }, [])
+  }, [dispatch])
 
   return (
     <Router>
       <div className="app">
         <ToastContainer />
-          <Switch>
-            <Route path="/register">
-              <Register />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/checkout">
-              <Header />
-              <Checkout />
-            </Route>
-            <Route path="/payment">
-              <Header />
-              <Elements stripe={promise}>
-                <Payment />
-              </Elements>
-            </Route>
-            <Route path="/orders">
-              <Header />
-              <Orders />
-            </Route>
-            <Route path="/">
-              <Header />
-              <Home />
-            </Route>
-          </Switch>
-          <Footer />
+        <Switch>
+          <Route path="/register">
+            <Register />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/checkout">
+            <Header />
+            <Checkout />
+          </Route>
+          <Route path="/payment">
+            <Header />
+            <Elements stripe={promise}>
+              <Payment />
+            </Elements>
+          </Route>
+          <Route path="/orders">
+            <Header />
+            <Orders />
+          </Route>
+          <Route path="/">
+            <Header />
+            <Home />
+          </Route>
+        </Switch>
+        <Footer />
       </div>
     </Router>
   );

@@ -18,73 +18,73 @@ function Payment() {
     const history = useHistory();
 
     const [state, setState] = useState({
-		error: '',
+        error: '',
         disabled: true,
         succeeded: false,
         processing: '',
         clientSecret: true
-	});
+    });
 
     useEffect(() => {
         // generate the special stripe client secret that will allow the website to charge the customer
-        const getClientSecret = async() => {
+        const getClientSecret = async () => {
             const response = await axios({
                 method: 'post',
-                url: `/payments/create?total=${getBasketTotal(basket) * 100 }`,
-                headers: {'Access-Control-Allow-Origin': '*'}
+                url: `/payments/create?total=${getBasketTotal(basket) * 100}`,
+                headers: { 'Access-Control-Allow-Origin': '*' }
             })
             setState({ ...state, clientSecret: response.data.clientSecret })
         }
 
         getClientSecret();
 
-    }, [basket])
+    }, [basket, state])
 
     // console.log("client secret", state.clientSecret);
 
     const handleChange = (event) => {
-		setState({ 
+        setState({
             ...state,
             disabled: event.empty,
-            error: event.error ? event.error.message: ''
-        });	
-	};
+            error: event.error ? event.error.message : ''
+        });
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        setState({ 
+        setState({
             ...state,
             processing: true,
-        });	
-        const payload = await stripe.confirmCardPayment(
+        });
+        await stripe.confirmCardPayment(
             state.clientSecret, {
-                payment_method: {
-                    card: elements.getElement(CardElement)
-                } 
+            payment_method: {
+                card: elements.getElement(CardElement)
             }
+        }
         ).then(({ paymentIntent }) => {
 
             db.collection('users')
-            .doc(user?.uid)
-            .collection('orders')
-            .doc(paymentIntent.id)
-            .set({
-                basket: uniqueBasketItems,
-                amount: paymentIntent.amount,
-                created: paymentIntent.created
-            })
-            
-            setState({ 
+                .doc(user?.uid)
+                .collection('orders')
+                .doc(paymentIntent.id)
+                .set({
+                    basket: uniqueBasketItems,
+                    amount: paymentIntent.amount,
+                    created: paymentIntent.created
+                })
+
+            setState({
                 ...state,
                 succeeded: true,
                 error: '',
                 processing: false,
-            }); 
-            
+            });
+
             history.replace('/orders')
 
             dispatch({
-                type: 'EMPTY_BASKET',   
+                type: 'EMPTY_BASKET',
             })
         }).catch((error) => {
             // console.log(error);
@@ -123,21 +123,21 @@ function Payment() {
                         <form onSubmit={handleSubmit}>
                             <CardElement onChange={handleChange} />
                             <div className='payment__priceContainer'>
-                                <CurrencyFormat 
+                                <CurrencyFormat
                                     renderText={(value) => (
-                                            <p> Order Total: <strong> {value}</strong> </p>
-                                        )
+                                        <p> Order Total: <strong> {value}</strong> </p>
+                                    )
                                     }
                                     value={getBasketTotal(basket)}
-                                    displayType={'text'} 
-                                    thousandSeparator={true} 
-                                    prefix={'$'} 
+                                    displayType={'text'}
+                                    thousandSeparator={true}
+                                    prefix={'$'}
                                 />
-                                <button disabled={ state.processing || state.succeeded || state.disabled }>
+                                <button disabled={state.processing || state.succeeded || state.disabled}>
                                     <span>{state.processing ? <p>Processing</p> : 'Buy Now'}</span>
                                 </button>
                             </div>
-                            { state.error && <div>{state.error}</div> }
+                            {state.error && <div>{state.error}</div>}
                         </form>
                     </div>
                 </div>

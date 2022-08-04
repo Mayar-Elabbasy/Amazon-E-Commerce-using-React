@@ -7,39 +7,39 @@ import { useHistory } from 'react-router-dom';
 
 function Subtotal() {
 
-    const [{ basket, user }, dispatch] = useStateValue();
+    const [{ basket, user },] = useStateValue();
     const history = useHistory();
 
     return (
         <div className="subtotal">
-            <CurrencyFormat 
+            <CurrencyFormat
                 renderText={(value) => (
-                        <React.Fragment>
-                            <p> Subtotal ({getBasketCount(basket)} items): 
-                                <strong> {value}</strong> </p>
-                            <small className="subtotal__gift">
-                                <input type="checkbox" /> This order contains a gift
-                            </small>
-                        </React.Fragment>
-                    )
+                    <React.Fragment>
+                        <p> Subtotal ({getBasketCount(basket)} items):
+                            <strong> {value}</strong> </p>
+                        <small className="subtotal__gift">
+                            <input type="checkbox" /> This order contains a gift
+                        </small>
+                    </React.Fragment>
+                )
                 }
                 value={getBasketTotal(basket)}
-                displayType={'text'} 
-                thousandSeparator={true} 
-                prefix={'$'} 
+                displayType={'text'}
+                thousandSeparator={true}
+                prefix={'$'}
             />
-            {(basket.length <= 0) ? 
+            {(basket.length <= 0) ?
                 <button disabled={true} style={{ backgroundColor: "gray" }}>
                     Proceed to Checkout
-                </button> 
+                </button>
                 :
                 <React.Fragment>
-                    {(user != null) ? 
-                        <button onClick={ () => history.push("/payment") }>
+                    {(user != null) ?
+                        <button onClick={() => history.push("/payment")}>
                             Proceed to Checkout
                         </button>
                         :
-                        <button onClick={ () => history.push("/login") }>
+                        <button onClick={() => history.push("/login")}>
                             Proceed to Checkout
                         </button>
                     }
