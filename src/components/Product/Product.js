@@ -1,5 +1,5 @@
 import '../../public/css/Product.css';
-import  { Star } from '@material-ui/icons';
+import { Star } from '@material-ui/icons';
 import { useStateValue } from '../ContextConfig/StateProvider';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -7,10 +7,10 @@ import { FaCartPlus } from 'react-icons/fa';
 import Tooltip from '@material-ui/core/Tooltip';
 
 function Product({ id, title, image, price, rating, quantity, hiddenButton }) {
-    const [ state, dispatch ] = useStateValue();
+    const [, dispatch] = useStateValue();
 
     // console.log(state.basket);
-     
+
     const addToBasket = () => {
         dispatch({
             type: "ADD_TO_BASKET",
@@ -30,7 +30,7 @@ function Product({ id, title, image, price, rating, quantity, hiddenButton }) {
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true
-        }); 
+        });
     }
 
     return (
@@ -42,20 +42,20 @@ function Product({ id, title, image, price, rating, quantity, hiddenButton }) {
                     <small>$</small>
                     <strong> {price}</strong>
                 </p>
-                {(quantity === 0) ? null :<span>Quantity: {quantity}</span>}
+                {(quantity === 0) ? null : <span>Quantity: {quantity}</span>}
                 <div className="product__rating">
                     {Array(rating).fill().map((i) => (<span key={Math.random()}><Star /></span>))}
                 </div>
-            </div> 
+            </div>
 
             <img src={image} alt="" />
             {!hiddenButton ?
                 <Tooltip title={<FaCartPlus size={27} />}>
                     <button onClick={addToBasket}>Add To Basket</button>
                 </Tooltip>
-            :
+                :
                 null
-            }      
+            }
         </div>
     )
 }
